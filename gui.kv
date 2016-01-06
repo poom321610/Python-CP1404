@@ -1,0 +1,33 @@
+BoxLayout:
+    orientation: 'vertical'
+    Label:
+        id: trip_location
+        text: "Current trip location:"
+    BoxLayout:
+        orientation: 'horizontal'
+        Spinner:
+            id: choose_currency
+            on_press: app.get_all_details()
+            text: 'Choose your currency'
+        TextInput:
+            id: input_current_trip_country
+            text: ''
+    BoxLayout:
+        orientation: 'horizontal'
+        Label:
+            id: home_country
+            text: 'Australia'
+        TextInput:
+            id: input_home_country
+            text: ''
+    Label:
+        id: current_date
+        text: "Today is:"
+    BoxLayout:
+        Label:
+            id: status_app
+            text: "Trip details accepted"
+        Button:
+            id: update_currency
+            text: "Update Currency"
+
