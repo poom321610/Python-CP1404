@@ -1,33 +1,59 @@
 BoxLayout:
     orientation: 'vertical'
     Label:
+        halign: "center"
+        valign: "middle"
+        font_size: 30
         id: trip_location
         text: "Current trip location:"
     BoxLayout:
         orientation: 'horizontal'
         Spinner:
+            font_size: 17
             id: choose_currency
             on_press: app.get_all_details()
-            text: 'Choose your currency'
         TextInput:
-            id: input_current_trip_country
-            text: ''
+            font_size: 17
+            halign: "center"
+            valign: "middle"
+            id: first_input
+            multiline: False
+            on_text: app.check_valid_home()
+            on_text_validate: app.converter()
     BoxLayout:
         orientation: 'horizontal'
         Label:
+            font_size: 17
+            halign: "center"
+            valign: "middle"
             id: home_country
-            text: 'Australia'
+
         TextInput:
-            id: input_home_country
-            text: ''
+            font_size: 17
+            halign: "center"
+            valign: "middle"
+            id: second_input
+            multiline: False
+            on_text: app.check_valid_location()
+            on_text_validate: app.converter_back()
     Label:
+        font_size: 30
+        halign: "center"
+        valign: "middle"
         id: current_date
         text: "Today is:"
     BoxLayout:
         Label:
+            font_size: 17
+            halign: "center"
+            valign: "middle"
             id: status_app
             text: "Trip details accepted"
         Button:
+            font_size: 17
+            halign: "center"
+            valign: "middle"
             id: update_currency
             text: "Update Currency"
+            on_release: app.update()
 

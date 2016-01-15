@@ -62,20 +62,21 @@ class Details:
         if self.locations:
             return self.locations
 
-#country test
-country1 = Country("Japan","JPY","¥")
-country1.add_currency(1000)
-print(country1)
-#detail test
-location1 = Details()
-location1.add("Thailand","2015/12/19","2015/12/23")
-location1.add("Thailand","2015/12/20","2015/12/19")
-location1.add("Japan","2015/12/24","2015/12/28")
-location1.add("Thailand","2015/12/20","2015/12/24")
-print(location1.locations[0][1])
-print(location1.locations[0])
-print(location1.locations[0][2])
-print(location1.locations)
-print(location1.current_country("2015/12/24"))
-print(location1.current_country("2016/12/24"))
-print(location1.is_empty())
+if __name__ == "__main__":
+    #country test
+    country1 = Country("Japan","JPY","¥")
+    country1.add_currency(1000)
+    print(country1)
+    #detail test
+    location1 = Details()
+    location1.add("Thailand","2015/12/19","2015/12/23")
+    location1.add("Thailand","2015/12/20","2015/12/19")
+    location1.add("Japan","2015/12/24","2015/12/28")
+    location1.add("Thailand","2015/12/20","2015/12/24")
+    print(location1.locations[0][1])
+    print(location1.locations[0])
+    print(location1.locations[0][2])
+    print(location1.locations)
+    print(location1.current_country("2015/12/24"))
+    print(location1.current_country("2016/12/24"))
+    print(location1.is_empty())

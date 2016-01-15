@@ -8,7 +8,7 @@ def convert(amount,home_currency_code,location_currency_code):
         results = web_utility.load_page(url_string)
         result =(results[results.index("result>"):results.index('<input type=submit value="Convert">')-13]).strip("result>" + str(amount) + "*0" + home_currency_code + "= <span class=bld>")
         if "." in result:
-            return "{0:,.2f}".format(float(result))
+            return "{0:,.3f}".format(float(result))
         else:
             return -1
 
@@ -47,18 +47,18 @@ if __name__ == '__main__':
 
 
 
-check_currency(convert(1,"AUD","AUD"),1,"AUD","AUD")
-check_currency(convert(1,"JPY","ABC"),1,"JPY","ABC")
-check_currency(convert(1,"ABC","USD"),1,"ABC","USD")
-check_currency(convert(10.95,"AUD","JPY"),10.95,"AUD","JPY")
-check_currency(convert(10.95,"AUD","BGN"),10.95,"AUD","BGN")
-check_currency(convert(200.15,"BGN","JPY"),200.15,"BGN","JPY")
-check_currency(convert(100,"JPY","USD"),100,"JPY","USD")
-check_currency(convert(19.99,"USD","BGN"),19.99,"USD","BGN")
-check_currency(convert(19.99,"USD","AUD"),19.99,"USD","AUD")
+    check_currency(convert(1,"AUD","AUD"),1,"AUD","AUD")
+    check_currency(convert(1,"JPY","ABC"),1,"JPY","ABC")
+    check_currency(convert(1,"ABC","USD"),1,"ABC","USD")
+    check_currency(convert(10.95,"AUD","JPY"),10.95,"AUD","JPY")
+    check_currency(convert(10.95,"AUD","BGN"),10.95,"AUD","BGN")
+    check_currency(convert(200.15,"BGN","JPY"),200.15,"BGN","JPY")
+    check_currency(convert(100,"JPY","USD"),100,"JPY","USD")
+    check_currency(convert(19.99,"USD","BGN"),19.99,"USD","BGN")
+    check_currency(convert(19.99,"USD","AUD"),19.99,"USD","AUD")
 
-check_detail(get_details("Unknown"),"Unknown")
-check_detail(get_details("Japanese"),"Japanese")
-check_detail(get_details("()"),"()")
-check_detail(get_details("Australia"),"Australia")
-check_detail(get_details("Japan"),"Japan")
+    check_detail(get_details("Unknown"),"Unknown")
+    check_detail(get_details("Japanese"),"Japanese")
+    check_detail(get_details("()"),"()")
+    check_detail(get_details("Australia"),"Australia")
+    check_detail(get_details("Japan"),"Japan")
