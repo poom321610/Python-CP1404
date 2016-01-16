@@ -8,7 +8,7 @@ def convert(amount,home_currency_code,location_currency_code):
         results = web_utility.load_page(url_string)
         result =(results[results.index("result>"):results.index('<input type=submit value="Convert">')-13]).strip("result>" + str(amount) + "*0" + home_currency_code + "= <span class=bld>")
         if "." in result:
-            return "{0:,.3f}".format(float(result))
+            return "{0:,.2f}".format(float(result))
         else:
             return -1
 
@@ -25,8 +25,9 @@ def get_all_details():
     dict = {}
     with open("currency_details.txt", "r", encoding= "utf8") as text_file:
         for line in text_file:
-            dict[line.split(",")[0]] = tuple(line.strip("\n").split(","))
+            dict[line.split(",")[0]] = tuple(line.strip().split(","))
     return dict
+
 
 if __name__ == '__main__':
 
