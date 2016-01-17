@@ -11,14 +11,14 @@ BoxLayout:
         Spinner:
             font_size: 17
             id: choose_currency
-            on_press: app.get_all_details()
+            on_press: app.spinner()
         TextInput:
             font_size: 17
             halign: "center"
             valign: "middle"
             id: first_input
             multiline: False
-            on_text: app.clear()
+            on_focus: app.clear()
             on_text: app.check_valid_home()
             on_text_validate: app.converter()
     BoxLayout:
@@ -35,7 +35,7 @@ BoxLayout:
             valign: "middle"
             id: second_input
             multiline: False
-            on_text: app.clear()
+            on_focus: app.clear()
             on_text: app.check_valid_location()
             on_text_validate: app.converter_back()
     Label:

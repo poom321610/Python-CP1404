@@ -1,16 +1,15 @@
-from kivy.app import App
-from kivy.lang import Builder
-from kivy.properties import StringProperty
+import Trip
+import datetime
 
-class Test(App):
+trip = Trip.Details()
+with open("config.txt", "r", encoding= "utf8") as user_file:
+    for line in user_file:
+        if "," not in line:
+            home_country = line.strip()
+        elif "," in line:
+            trip.add(*line.strip().split(","))
 
-    def build(self):
-        self.root = Builder.load_file('try.kv')
-        return self.root
-    def clear(self):
-        if self.root.ids.first_input.text == "" or self.root.ids.second_input == "":
-            self.root.ids.status_app.text == ""
-    def today_date(self):
-        self.root.ids.current_date.text = "Today is:\n{}".format(datetime.date.today().strftime("%Y/%m/%d"))
-    self.root.ids.choose_currency.values = sorted(dict)
-Test().run()
+print(trip.current_country(datetime.date.today().strftime("%Y/%m/%d")))
+print(home_country)
+print(trip.locations)
+print(trip)

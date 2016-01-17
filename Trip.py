@@ -23,24 +23,17 @@ class Details:
         from _datetime import datetime
         datetime.strptime(start_date,"%Y/%m/%d")
         datetime.strptime(end_date,"%Y/%m/%d")
-        try:
-            try:
-                if start_date > end_date:
-                    raise Error("Date is invalid")
-            except Error as error_date:
-                print(error_date)
-                return False
 
-            try:
-                for date in self.locations:
-                    if start_date in date:
-                        raise Error("Date was used")
-            except Error as error_date:
-                print(error_date)
-                False
-        except :
-            if False:
-                self.locations.append(None)
+        try:
+            if start_date > end_date:
+                raise Error("Date is invalid")
+            for date in self.locations:
+                if start_date in date:
+                    raise Error("Date was used")
+        except Error as error_date:
+            print(error_date)
+            return True
+
         else:
             self.locations.append((country_name,start_date,end_date))
 
@@ -55,8 +48,6 @@ class Details:
                     raise Error("There is no location in that date.")
         except Error as error_location:
             print(error_location)
-
-
 
     def is_empty(self):
         if self.locations:

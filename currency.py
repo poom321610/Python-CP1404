@@ -1,16 +1,13 @@
 import web_utility
 
 def convert(amount,home_currency_code,location_currency_code):
-    if home_currency_code == location_currency_code:
-            return -1
+    url_string = "https://www.google.com/finance/converter?a="+ str(amount) + "&from=" + str(home_currency_code) + "&to=" + str(location_currency_code)
+    results = web_utility.load_page(url_string)
+    if (home_currency_code == location_currency_code) or not home_currency_code + " = <span class=bld>" in results:
+        return -1
     else:
-        url_string = "https://www.google.com/finance/converter?a="+ str(amount) + "&from=" + str(home_currency_code) + "&to=" + str(location_currency_code)
-        results = web_utility.load_page(url_string)
-        result =(results[results.index("result>"):results.index('<input type=submit value="Convert">')-13]).strip("result>" + str(amount) + "*0" + home_currency_code + "= <span class=bld>")
-        if "." in result:
-            return "{0:,.2f}".format(float(result))
-        else:
-            return -1
+        result = (results[results.index(home_currency_code + " = <span class=bld>") + 22:results.index(location_currency_code + "</span>")])
+        return "{:.3f}".format(float(result))
 
 
 def get_details(currency):
@@ -51,6 +48,8 @@ if __name__ == '__main__':
     check_currency(convert(1,"AUD","AUD"),1,"AUD","AUD")
     check_currency(convert(1,"JPY","ABC"),1,"JPY","ABC")
     check_currency(convert(1,"ABC","USD"),1,"ABC","USD")
+    check_currency(convert(80,"JPY","AUD"),80,"JPY","AUD")
+    check_currency(convert(81,"JPY","AUD"),81,"JPY","AUD")
     check_currency(convert(10.95,"AUD","JPY"),10.95,"AUD","JPY")
     check_currency(convert(10.95,"AUD","BGN"),10.95,"AUD","BGN")
     check_currency(convert(200.15,"BGN","JPY"),200.15,"BGN","JPY")
