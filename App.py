@@ -6,7 +6,6 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.config import Config
 
-
 class CurrencyApp(App):
     def __init__(self):
         super().__init__()
@@ -77,7 +76,6 @@ class CurrencyApp(App):
         else:
             self.root.ids.first_input.text = str(result)
             self.root.ids.status_app.text = "{}({}) to {}({})".format(self.dict[self.root.ids.home_country.text][1],self.dict[self.root.ids.home_country.text][2],self.dict[self.root.ids.choose_currency.text][1],self.dict[self.root.ids.choose_currency.text][2])
-
 
     def build(self):
         self.title = "Foreign Exchange Calculator"
